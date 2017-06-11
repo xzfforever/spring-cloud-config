@@ -1,12 +1,12 @@
-package com.xzf.spring.cloud.springcloudconfigclient;
+package com.xzf.spring.cloud.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringCloudConfigClientApplication {
+public class ConfigServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringCloudConfigClientApplication.class, args);
+		SpringApplication.run(ConfigServerApplication.class, args);
 	}
 }
