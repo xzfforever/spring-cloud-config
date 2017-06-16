@@ -1,4 +1,5 @@
 # spring-cloud-config
+
 ###基本使用步骤：
 <li>Config Server端（基于git）
 >1、配置git仓库地址
@@ -55,15 +56,23 @@ public class ConfigController {
 1、启动Server、Client
 2、访问测试方法
 3、更改git分支上文件信息
-4、访问Config Server(如http://localhost:8888/configClient/dev/master),查看更新后的内容信息
+4、访问Config Server(如http://localhost:8888/configClient/dev/master或configClient.properties),查看更新后的内容信息
 5、向Config Client发送Post请求（/refresh）,js脚本见下面
 </pre>
+<hr/>
 
+##客户端更新配置的问题
+<li>问题描述
+<pre>
+Config服务端负责将git(svn)中存储的配置文件发布成REST接口，客户端可以从服务端REST接口获取配置。但客户端并不能主动感知到配置的变化，从而去获取新的配置。为了获取新的配置，需要每个客户端通过POST方法触发各自的/refresh。
+</pre>
+<li>解决方案<br/>
+1、利用WebHook
+>WebHook是当某个事件（如常用的push事件）发生时，通过发送http、post请求（请求地址可配置）的方式来通知信息接收方。
 
+2、Spring Cloud Bus
 
-
-
-
+<hr/>
 
 <li>JS脚本sendPostRequest.js
 <pre>
