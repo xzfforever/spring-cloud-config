@@ -50,5 +50,43 @@ public class ConfigController {
     }
 }
 </pre>
+###低端使用步骤
+<pre>
+1、启动Server、Client
+2、访问测试方法
+3、更改git分支上文件信息
+4、访问Config Server(如http://localhost:8888/configClient/dev/master),查看更新后的内容信息
+5、向Config Client发送Post请求（/refresh）,js脚本见下面
+</pre>
 
 
+
+
+
+
+
+<li>JS脚本sendPostRequest.js
+<pre>
+var http = require('http');
+
+var querystring = require('querystring');
+
+var options = {
+	host:'127.0.0.1',
+ 	port:9999,
+	path:'/refresh',
+	method:'POST'   
+};
+
+var req = http.request(options,function(res){
+	console.log('STATUS:'+res.statusCode);
+	console.log('HEADERS:'+JSON.stringify(res.headers));
+	res.setEncoding('utf8');
+	res.on('data',function(chunck){
+		console.log('BODY:'+chunck);
+	});
+});
+
+req.end();
+
+</pre>
